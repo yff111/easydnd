@@ -25,6 +25,7 @@ Simple, low level drop-in drag & drop library
 ```ts
 // docs/getting-started-snippet.ts
 
+/* eslint-disable unused-imports/no-unused-vars */
 import createDragDrop from 'dnd-ts'
 
 // provides a few basic styles for drop-animations etc.
@@ -48,6 +49,7 @@ const instance = createDragDrop(document.getElementById('list')!, {
 
 // call destroy() when the component is unmounted to remove all event-listeners
 instance.destroy()
+
 ```
 
 

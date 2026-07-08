@@ -32,6 +32,7 @@ export default defineConfig({
           { text: 'Multiple Lists', link: '/multiple-lists' },
           { text: 'Tree', link: '/tree' },
           { text: 'File-Tree', link: '/file-tree' },
+          { text: 'Nested Instances', link: '/nested-instances' },
         ],
       },
       {

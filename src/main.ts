@@ -188,7 +188,11 @@ export function createMouseDragDrop(options: Partial<DragDropOptions> = {}): Dra
 
   function onDragStart(e: DragEvent) {
     const dragElement = (e.target as HTMLElement).closest?.(dragElementSelector) as HTMLElement | null
-    if (!dragElement || isDragging)
+    // `closest` also matches an ancestor that merely contains the actual
+    // dragged element (e.g. a nested drag & drop instance's item living
+    // inside this instance's own dragElementSelector). Only elements this
+    // instance itself armed via onMouseDown carry `draggable="true"`.
+    if (!dragElement || isDragging || dragElement.getAttribute('draggable') !== 'true')
       return
 
     isDragging = true
