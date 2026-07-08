@@ -1,7 +1,7 @@
 {
   "name": "easydnd",
   "type": "module",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Drag & Drop – low level, modular, performant. Zero dependencies.",
   "author": "yff111",
   "license": "MIT",
@@ -67,7 +67,6 @@
     "copyfiles": "^2.4.1",
     "embedme": "^1.22.1",
     "eslint": "^10.6.0",
-    "install-peers": "^1.0.4",
     "tsup": "8.5.1",
     "typescript": "6.0.3",
     "vitepress": "^1.6.4",
