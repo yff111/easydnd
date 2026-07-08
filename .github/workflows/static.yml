@@ -41,10 +41,10 @@ jobs:
           cache: yarn
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      - name: Build package
-        run: yarn build
       - name: Install dependencies
         run: yarn install
+      - name: Build package
+        run: yarn build
       - name: Build with VitePress
         run: npm run docs:build
       - name: Upload artifact
