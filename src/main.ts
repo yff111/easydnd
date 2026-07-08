@@ -121,8 +121,21 @@ export function createMouseDragDrop(options: Partial<DragDropOptions> = {}): Dra
     lastRawOffset = offset
     lastRawDropEl = dropElement
 
-    if (!dropElement)
+    const scrollContainer = getClosestScrollContainer(dropElement ?? container)
+
+    // Scroll-following plugins (e.g. autoScroll) need to react to pointer
+    // movement even when the cursor isn't over a valid drop target — e.g. the
+    // empty space past the last item, which is where users naturally rest
+    // the cursor to trigger auto-scrolling.
+    const notifyPlugins = () => {
+      const payload = createPayload('DragOver', e, currentPayload!.dragElements, scrollContainer)
+      for (const p of plugins) p.DragOver?.(payload)
+    }
+
+    if (!dropElement) {
+      notifyPlugins()
       return
+    }
 
     const position = resolvePosition(dropElement, currentPayload.dragElements[0], offset)
 
@@ -132,14 +145,16 @@ export function createMouseDragDrop(options: Partial<DragDropOptions> = {}): Dra
     lastPosition = position
     lastPositionDropEl = dropElement
 
-    if (position === 'none' || !container.contains(dropElement))
+    if (position === 'none' || !container.contains(dropElement)) {
+      notifyPlugins()
       return
+    }
 
     dispatch(createPayload(
       'DragOver',
       e,
       currentPayload.dragElements,
-      getClosestScrollContainer(dropElement),
+      scrollContainer,
       dropElement,
       position,
     ))

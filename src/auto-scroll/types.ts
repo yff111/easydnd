@@ -6,7 +6,9 @@ export interface AutoScrollPluginOptions {
    */
   interval: number
   /**
-   * Steps (in pixels)
+   * Maximum scroll distance per interval tick (in pixels), reached when the
+   * cursor is at/past the container's edge. Scroll speed ramps up smoothly
+   * as the cursor approaches the edge within `threshold`.
    *
    * Defaults to: 4
    */

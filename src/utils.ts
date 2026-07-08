@@ -193,8 +193,11 @@ export function getClosestScrollContainer(element: HTMLElement) {
   }
   let parent: HTMLElement = element
   while (parent) {
-    const { overflow } = window.getComputedStyle(parent)
-    if (overflow.split(' ').every(o => o === 'auto' || o === 'scroll')) {
+    const { overflowX, overflowY } = window.getComputedStyle(parent)
+    if (
+      overflowX === 'auto' || overflowX === 'scroll'
+      || overflowY === 'auto' || overflowY === 'scroll'
+    ) {
       return parent
     }
     parent = parent.parentElement!

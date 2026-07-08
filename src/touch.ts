@@ -124,8 +124,21 @@ export function createTouchDragDrop(options: Partial<DragDropOptions> = {}): Dra
 
       const dropEl = document.elementFromPoint(t.clientX, t.clientY)
         ?.closest<HTMLElement>(dropElementSelector) ?? null
-      if (!dropEl || !container.contains(dropEl))
+
+      const dragOverScrollContainer = getClosestScrollContainer(dropEl ?? container)
+
+      // Scroll-following plugins (e.g. autoScroll) need to react to pointer
+      // movement even when the touch isn't over a valid drop target — e.g.
+      // the empty space past the last item.
+      const notifyPlugins = () => {
+        const payload = createPayload('DragOver', e, dragElements, dragOverScrollContainer)
+        for (const p of plugins) p.DragOver?.(payload)
+      }
+
+      if (!dropEl || !container.contains(dropEl)) {
+        notifyPlugins()
         return
+      }
 
       const { top, left, height, width } = dropEl.getBoundingClientRect()
       const rawOffset = vertical ? t.clientY - top : t.clientX - left
@@ -134,8 +147,10 @@ export function createTouchDragDrop(options: Partial<DragDropOptions> = {}): Dra
         ? dropPositionFn({ dropElement: dropEl, dragElement: el })
         : 'none' as const
       const position = resolveCollision(posRules, threshold)(snapVal(rawOffset), dim)
-      if (position === 'none')
+      if (position === 'none') {
+        notifyPlugins()
         return
+      }
       if (position === lastPos && dropEl === lastDropEl)
         return
 
@@ -146,7 +161,7 @@ export function createTouchDragDrop(options: Partial<DragDropOptions> = {}): Dra
         'DragOver',
         e,
         dragElements,
-        getClosestScrollContainer(dropEl),
+        dragOverScrollContainer,
         dropEl,
         position,
       )

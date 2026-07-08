@@ -18,6 +18,27 @@ export const DEFAULTS: AutoScrollPluginOptions = {
   threshold: 100,
 }
 
+// Eases the ramp-up so it isn't imperceptibly slow right as the cursor
+// crosses into the threshold zone, while still maxing out at the edge.
+function intensityFromRatio(ratio: number) {
+  return Math.sqrt(Math.min(Math.max(ratio, 0), 1))
+}
+
+// Returns a signed value in [-1, 1]: sign is the scroll direction, magnitude
+// is how close the cursor is to the container's edge (0 outside the
+// threshold zone, 1 right at/past the edge).
+function computeScrollRatio(pos: number, containerStart: number, containerSize: number, threshold: number) {
+  if (threshold <= 0)
+    return 0
+  const distFromStart = pos - containerStart
+  const distFromEnd = containerStart + containerSize - pos
+  if (distFromStart < threshold)
+    return -intensityFromRatio((threshold - distFromStart) / threshold)
+  if (distFromEnd < threshold)
+    return intensityFromRatio((threshold - distFromEnd) / threshold)
+  return 0
+}
+
 function autoScroll(options?: Partial<AutoScrollPluginOptions>): DragDropPlugin {
   const { interval, steps, threshold } = options
     ? { ...DEFAULTS, ...options }
@@ -27,13 +48,13 @@ function autoScroll(options?: Partial<AutoScrollPluginOptions>): DragDropPlugin 
   let currentScrollContainer: HTMLElement | Window = window
   let scrollContainerRect: Rect | DOMRect = { x: 0, y: 0, width: 0, height: 0 }
 
-  const scroll = (scrollDirY: number, scrollDirX: number) => {
+  const scroll = (scrollRatioY: number, scrollRatioX: number) => {
     clearInterval(scrollInterval)
     scrollInterval = setInterval(
       () =>
         currentScrollContainer.scrollTo({
-          top: getScrollY(currentScrollContainer) + scrollDirY * steps,
-          left: getScrollX(currentScrollContainer) + scrollDirX * steps,
+          top: getScrollY(currentScrollContainer) + scrollRatioY * steps,
+          left: getScrollX(currentScrollContainer) + scrollRatioX * steps,
         }),
       interval,
     )
@@ -61,21 +82,11 @@ function autoScroll(options?: Partial<AutoScrollPluginOptions>): DragDropPlugin 
         updateScrollContainer(scrollContainer)
       }
       const { clientX, clientY } = getClientCoords(originalEvent)
-      const scrollDirY
-        = clientY - scrollContainerRect.y < threshold
-          ? -1
-          : clientY - scrollContainerRect.y > scrollContainerRect.height - threshold
-            ? 1
-            : 0
-      const scrollDirX
-        = clientX - scrollContainerRect.x < threshold
-          ? -1
-          : clientX - scrollContainerRect.x > scrollContainerRect.width - threshold
-            ? 1
-            : 0
+      const scrollRatioY = computeScrollRatio(clientY, scrollContainerRect.y, scrollContainerRect.height, threshold)
+      const scrollRatioX = computeScrollRatio(clientX, scrollContainerRect.x, scrollContainerRect.width, threshold)
 
-      if (scrollDirY || scrollDirX)
-        scroll(scrollDirY, scrollDirX)
+      if (scrollRatioY || scrollRatioX)
+        scroll(scrollRatioY, scrollRatioX)
       else cancelScroll()
     },
     DragEnd() { cancelScroll() },
