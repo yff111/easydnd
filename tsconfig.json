@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "ignoreDeprecations": "6.0",
+    "paths": {
+      "superdrop": ["./src/"],
+      "superdrop/*": ["./src/*"],
+      "dndrxjs": ["./src/"],
+      "dndrxjs/*": ["./src/*"]
+    },
+    "resolveJsonModule": true,
+    "types": ["vitest/globals"],
+    "allowJs": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noEmit": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "skipLibCheck": true
+
+  }
+}

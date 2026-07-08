@@ -1,0 +1,76 @@
+{
+  "name": "superdrop",
+  "type": "module",
+  "version": "0.2.0",
+  "description": "Drag & Drop – low level, modular, performant. Zero dependencies.",
+  "author": "yff111",
+  "license": "MIT",
+  "homepage": "https://yff111.github.io/dndrxjs/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yff111/dndrxjs.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "@yff111:registry": "https://npm.pkg.github.com"
+  },
+  "sideEffects": false,
+  "tsup": {
+    "entry": [
+      "src/index.ts",
+      "src/utils.ts"
+    ],
+    "splitting": false,
+    "treeshake": true,
+    "minify": true,
+    "format": [
+      "esm"
+    ],
+    "clean": true
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./utils": {
+      "types": "./dist/utils.d.ts",
+      "default": "./dist/utils.js"
+    },
+    "./dist/styles.css": "./dist/styles.css"
+  },
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build-fast": "tsup",
+    "copy-styles": "copyfiles -f src/styles.css dist",
+    "embed-readme": "embedme README.md",
+    "build": "npm run build-fast -- --dts-resolve && npm run embed-readme  &&  npm run copy-styles",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build",
+    "release": "bumpp && npm publish",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "peerDependencies": {},
+  "dependencies": {},
+  "devDependencies": {
+    "@antfu/eslint-config": "^9.1.0",
+    "@faker-js/faker": "^10.5.0",
+    "bumpp": "^11.1.0",
+    "copyfiles": "^2.4.1",
+    "embedme": "^1.22.1",
+    "eslint": "^10.6.0",
+    "install-peers": "^1.0.4",
+    "tsup": "8.5.1",
+    "typescript": "6.0.3",
+    "vitepress": "^1.6.4",
+    "vitest": "4.1.9"
+  }
+}
