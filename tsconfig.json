@@ -5,10 +5,10 @@
     "moduleResolution": "bundler",
     "ignoreDeprecations": "6.0",
     "paths": {
-      "easydnd": ["./src/"],
-      "easydnd/*": ["./src/*"],
-      "easydnd": ["./src/"],
-      "easydnd/*": ["./src/*"]
+      "dnd-ts": ["./src/"],
+      "dnd-ts/*": ["./src/*"],
+      "dnd-ts": ["./src/"],
+      "dnd-ts/*": ["./src/*"]
     },
     "resolveJsonModule": true,
     "types": ["vitest/globals"],

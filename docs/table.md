@@ -3,7 +3,7 @@
 Table Demo with multi-select and custom drag-handle.
 
 <script setup>
-  import 'easydnd/dist/styles.css'
+  import 'dnd-ts/dist/styles.css'
   import { defineClientComponent } from 'vitepress'
 
   const TableDemo = defineClientComponent(() => import('./table-demo.vue'))

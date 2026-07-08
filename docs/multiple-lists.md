@@ -1,7 +1,7 @@
 # Multiple Lists
 
 <script setup>
-  import 'easydnd/dist/styles.css'
+  import 'dnd-ts/dist/styles.css'
   import { defineClientComponent } from 'vitepress'
 
   const MultipleListsDemo = defineClientComponent(() => {

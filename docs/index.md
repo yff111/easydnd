@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: "easydnd"
+  name: "dnd-ts"
   text: "drag & drop"
   image: "logo.png"
   tagline: "Low-level, modular, zero-dependency drag & drop."

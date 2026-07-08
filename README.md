@@ -1,12 +1,12 @@
-<div align="center"><img src="https://yff111.github.io/easydnd/logo.png" height="320px" width="320px" aria-label="easydnd logo"></div>
+<div align="center"><img src="https://yff111.github.io/dnd-ts/logo.png" height="320px" width="320px" aria-label="dnd-ts logo"></div>
 
-# easydnd
+# dnd-ts
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![bundle][bundle-src]][bundle-href]
 
-[Documentation](https://yff111.github.io/easydnd)
+[Documentation](https://yff111.github.io/dnd-ts)
 
 Simple, low level drop-in drag & drop library 
 
@@ -25,12 +25,11 @@ Simple, low level drop-in drag & drop library
 ```ts
 // docs/getting-started-snippet.ts
 
-/* eslint-disable unused-imports/no-unused-vars */
-import createDragDrop from 'easydnd'
+import createDragDrop from 'dnd-ts'
 
 // provides a few basic styles for drop-animations etc.
 // @ts-expect-error — CSS module, no types needed
-import 'easydnd/dist/styles.css'
+import 'dnd-ts/dist/styles.css'
 
 const instance = createDragDrop(document.getElementById('list')!, {
   // adds css classes to drag-, drop- and container-elements
@@ -49,7 +48,6 @@ const instance = createDragDrop(document.getElementById('list')!, {
 
 // call destroy() when the component is unmounted to remove all event-listeners
 instance.destroy()
-
 ```
 
 
@@ -61,11 +59,11 @@ for a more sophisticated solution consider: https://github.com/atlassian/pragmat
 
 ## License
 
-[MIT](https://github.com/yff111/easydnd/blob/main/LICENSE) License © 2023-PRESENT [Stephan Reich](https://github.com/yff111)
+[MIT](https://github.com/yff111/dnd-ts/blob/main/LICENSE) License © 2023-PRESENT [Stephan Reich](https://github.com/yff111)
 
-[npm-version-src]: https://img.shields.io/npm/v/easydnd?style=flat&colorA=080f12&colorB=1fa669
-[npm-version-href]: https://npmjs.com/package/easydnd
-[npm-downloads-src]: https://img.shields.io/npm/dm/easydnd?style=flat&colorA=080f12&colorB=1fa669
-[npm-downloads-href]: https://npmjs.com/package/easydnd
-[bundle-src]: https://img.shields.io/bundlephobia/minzip/easydnd?style=flat&colorA=080f12&colorB=1fa669&label=minzip
-[bundle-href]: https://bundlephobia.com/result?p=easydnd
+[npm-version-src]: https://img.shields.io/npm/v/dnd-ts?style=flat&colorA=080f12&colorB=1fa669
+[npm-version-href]: https://npmjs.com/package/dnd-ts
+[npm-downloads-src]: https://img.shields.io/npm/dm/dnd-ts?style=flat&colorA=080f12&colorB=1fa669
+[npm-downloads-href]: https://npmjs.com/package/dnd-ts
+[bundle-src]: https://img.shields.io/bundlephobia/minzip/dnd-ts?style=flat&colorA=080f12&colorB=1fa669&label=minzip
+[bundle-href]: https://bundlephobia.com/result?p=dnd-ts

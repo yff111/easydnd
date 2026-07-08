@@ -1,14 +1,14 @@
 {
-  "name": "easydnd",
+  "name": "dnd-ts",
   "type": "module",
   "version": "0.2.5",
   "description": "Drag & Drop – low level, modular, performant. Zero dependencies.",
   "author": "yff111",
   "license": "MIT",
-  "homepage": "https://yff111.github.io/easydnd/",
+  "homepage": "https://yff111.github.io/dnd-ts/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yff111/easydnd.git"
+    "url": "git+https://github.com/yff111/dnd-ts.git"
   },
   "publishConfig": {
     "access": "public",

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { createDragDrop } from 'easydnd'
-import { fromHTML, reorderItems } from 'easydnd/utils'
+import { createDragDrop } from 'dnd-ts'
+import { fromHTML, reorderItems } from 'dnd-ts/utils'
 import { onMounted, onUnmounted, ref } from 'vue'
 import data from './data/mock-data-persons.json'
 

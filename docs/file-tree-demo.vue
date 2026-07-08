@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { createDragDrop } from 'easydnd'
-import { type TreeNode, moveTreeNodesById } from 'easydnd/utils'
+import { createDragDrop } from 'dnd-ts'
+import { type TreeNode, moveTreeNodesById } from 'dnd-ts/utils'
 
 import { onMounted, onUnmounted, ref } from 'vue'
 

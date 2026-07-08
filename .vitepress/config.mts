@@ -2,12 +2,12 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: 'easydnd',
+  title: 'dnd-ts',
   description: 'low level drag & drop library',
   srcDir: './docs/',
-  base: '/easydnd/',
+  base: '/dnd-ts/',
   head: [
-    ['link', { rel: 'shortcut icon', href: '/easydnd/favicon.ico' }],
+    ['link', { rel: 'shortcut icon', href: '/dnd-ts/favicon.ico' }],
     ['meta', { property: 'og:type', content: 'website' }],
   ],
   themeConfig: {
@@ -46,7 +46,7 @@ export default defineConfig({
       },
     ],
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/yff111/easydnd/' },
+      { icon: 'github', link: 'https://github.com/yff111/dnd-ts/' },
     ],
   },
 })

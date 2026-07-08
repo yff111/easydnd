@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { createDragDrop } from 'easydnd'
-import { reorderItems } from 'easydnd/utils'
+import { createDragDrop } from 'dnd-ts'
+import { reorderItems } from 'dnd-ts/utils'
 import { onMounted, onUnmounted, ref } from 'vue'
 import data from './data/MOCK_DATA_1000.json'
 
